@@ -8,7 +8,7 @@ export default class WordMatch extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            match: null,
+            guess: '',
             currentWord: '',
             choices: [],
         };
@@ -26,15 +26,11 @@ export default class WordMatch extends Component {
         const choices = map(options, (key) => {
             return words[key];
         });
-        this.setState({ currentWord: options[0], choices })
+        this.setState({ currentWord: options[0], choices, guess: '' });
     }
 
     handleChoose(e) {
-        if (e.target.value === words[this.state.currentWord]) {
-            this.setState({ match: true });
-        } else { // make this ({ match: e.target.value === this.props... }) ?
-            this.setState({ match: false });
-        }
+        this.setState({ guess: e.target.value });
     }
 
     render() {
@@ -45,15 +41,29 @@ export default class WordMatch extends Component {
                 {loading && 
                     <View>
                         <Text> {this.state.currentWord} </Text>
-                        {this.state.choices.map((option) => (
+                        {this.state.choices.map((option) => {
+                            let color;
+                            if (this.state.guess.length) {
+                                if (option === words[this.state.currentWord]) {
+                                    color = '#2ed114';
+                                } else if (this.state.guess === option) {
+                                        color = '#dd1313';
+                                } else {
+                                    color = '#a2c0f2';
+                                }
+                            } else {
+                                color = '#a2c0f2';
+                            }
+                            return (
                             <Button
                                 onPress={this.handleChoose}
                                 title={option}
                                 value={option}
+                                color={}
                                 accessibilityLabel={'Select option ' + option}
-                            />
-                        ))}
-                        {this.state.match === null ||
+                            />)
+                        })}
+                        {this.state.guess.length &&
                             <Button
                                 onPress={this.randomWord}
                                 title="Next"
