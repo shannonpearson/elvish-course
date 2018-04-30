@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Button, View } from 'react-native';
+import About from './About';
+import WordMatch from './WordMatch';
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -36,6 +38,8 @@ export default class HomePage extends Component {
                 />
             </View>
         }
+        {this.state.page === 'about' && <About />}
+        {this.state.page === 'match' && <WordMatch />}
       </View>
     );
   }
