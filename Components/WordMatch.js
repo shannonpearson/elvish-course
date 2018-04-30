@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Button } from 'react-native';
+import { Text, Button, ActivityIndicator } from 'react-native';
 import words from '../data/SampleData';
 import { keys, shuffle, map } from 'lodash';
 
@@ -30,7 +30,7 @@ export default class WordMatch extends Component {
     }
 
     handleChoose(e) {
-        if (e.target.value === this.props.words[this.state.currentWord]) {
+        if (e.target.value === words[this.state.currentWord]) {
             this.setState({ match: true });
         } else { // make this ({ match: e.target.value === this.props... }) ?
             this.setState({ match: false });
@@ -38,10 +38,24 @@ export default class WordMatch extends Component {
     }
 
     render() {
-        if (this.state.currentWord.length) {
-
-        } else {
-
-        }
+        const loading = !this.state.currentWord.length;
+        return (
+            <View>
+                {loading || <ActivityIndicator size="large" />}
+                {loading && 
+                    <View>
+                        <Text> {this.state.currentWord} </Text>
+                        {this.state.choices.map((option) => (
+                            <Button
+                                onPress={this.handleChoose}
+                                title={option}
+                                value={option}
+                                accessibilityLabel={'Select option ' + option}
+                            />
+                        ))}
+                    </View>
+                }
+            </View>
+        )
     }
 }
