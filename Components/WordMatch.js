@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, ActivityIndicator } from 'react-native';
+import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
 import words from '../data/SampleData';
 import { keys, shuffle, map } from 'lodash';
 
@@ -64,28 +64,52 @@ export default class WordMatch extends Component {
                                     color = '#a2c0f2';
                                 }
                                 return (
-                                <Button
-                                    onPress={this.handleChoose}
-                                    title={option}
-                                    color={color}
-                                    key={option}
-                                    accessibilityLabel={option}
-                                />)
+                                <View key={option} style={styles.guessButton}>
+                                    <Button
+                                        onPress={this.handleChoose}
+                                        title={option}
+                                        color={color}
+                                        accessibilityLabel={option}
+                                    />
+                                </View>
+                                )
                             })
                         }
                         {
                             !!this.state.guess.length &&
-                            <Button
-                                onPress={this.randomWord}
-                                title="Next"
-                                accessibilityLabel="Advance to next word"
-                            />
+                            <View style={styles.nextButton}>
+                                <Button
+                                    onPress={this.randomWord}
+                                    title="Next"
+                                    accessibilityLabel="Advance to next word"
+                                />
+                            </View>
                         }
-                        <Text> Correct: { this.state.correct } </Text>
-                        <Text> Incorrect: { this.state.incorrect } </Text>
+                        <View style={{ flex: 1 }}>
+                            <Text style={styles.counterText}> Correct: { this.state.correct } </Text>
+                            <Text style={styles.counterText}> Incorrect: { this.state.incorrect } </Text>
+                        </View>
                     </View>
                 }
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    guessButton: {
+        marginTop: 10,
+        width: '80%',
+    },
+    nextButton: {
+        marginTop: 20,
+        width: '80%',
+    },
+    container: {
+        flex: 1,
+    },
+    counterText: {
+        marginLeft: 20,
+        // fontFamily: '"Trebuchet MS",Helvetica,sans-serif',
+    }
+});
