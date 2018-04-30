@@ -11,6 +11,8 @@ export default class WordMatch extends Component {
             guess: '',
             currentWord: '',
             choices: [],
+            correct: 0,
+            incorrect: 0,
         };
         this.handleChoose = this.handleChoose.bind(this);
         this.randomWord = this.randomWord.bind(this);
@@ -23,16 +25,21 @@ export default class WordMatch extends Component {
 
     randomWord() {
         const options = shuffle(this.keys).slice(0, 4);
-        console.log('options', options)
         const choices = map(options, (key) => {
             return words[key];
         });
-        console.log('choices', choices);
         this.setState({ currentWord: options[0], choices: shuffle(choices), guess: '' }, () => {console.log(this.state)});
     }
 
     handleChoose(event) {
-        this.setState({ guess: event._dispatchInstances.memoizedProps.accessibilityLabel });
+        const guess = event._dispatchInstances.memoizedProps.accessibilityLabel;
+        if (!this.state.guess.length) {
+            if (guess === words[this.state.currentWord]) {
+                this.setState({ guess, correct: this.state.correct + 1 });
+            } else {
+                this.setState({ guess, incorrect: this.state.incorrect + 1});
+            }
+        }
     }
 
     render() {
@@ -44,36 +51,38 @@ export default class WordMatch extends Component {
                         <Text> {this.state.currentWord} </Text>
                         {
                             this.state.choices.map((option) => {
-                            let color;
-                            if (this.state.guess.length) {
-                                if (option === words[this.state.currentWord]) {
-                                    color = '#2ed114';
-                                } else if (option === this.state.guess) {
-                                        color = '#dd1313';
+                                let color;
+                                if (this.state.guess.length) {
+                                    if (option === words[this.state.currentWord]) {
+                                        color = '#2ed114';
+                                    } else if (option === this.state.guess) {
+                                            color = '#dd1313';
+                                    } else {
+                                        color = '#a2c0f2';
+                                    }
                                 } else {
                                     color = '#a2c0f2';
                                 }
-                            } else {
-                                color = '#a2c0f2';
-                            }
-                            return (
-                            <Button
-                                onPress={this.handleChoose}
-                                title={option}
-                                color={color}
-                                key={option}
-                                accessibilityLabel={option}
-                            />)
-                        })
-                    }
-                        {
-                            // this.state.guess.length &&
-                            // <Button
-                            //     onPress={this.randomWord}
-                            //     title="Next"
-                            //     accessibilityLabel="Advance to next word"
-                            // />
+                                return (
+                                <Button
+                                    onPress={this.handleChoose}
+                                    title={option}
+                                    color={color}
+                                    key={option}
+                                    accessibilityLabel={option}
+                                />)
+                            })
                         }
+                        {
+                            !!this.state.guess.length &&
+                            <Button
+                                onPress={this.randomWord}
+                                title="Next"
+                                accessibilityLabel="Advance to next word"
+                            />
+                        }
+                        <Text> Correct: { this.state.correct } </Text>
+                        <Text> Incorrect: { this.state.incorrect } </Text>
                     </View>
                 }
             </View>
