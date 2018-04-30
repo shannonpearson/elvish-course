@@ -59,7 +59,7 @@ export default class WordMatch extends Component {
                                 onPress={this.handleChoose}
                                 title={option}
                                 value={option}
-                                color={}
+                                color={color}
                                 accessibilityLabel={'Select option ' + option}
                             />)
                         })}
