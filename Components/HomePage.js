@@ -1,25 +1,40 @@
 import React from 'react';
-import { Text, Button } from 'react-native';
+import { StyleSheet, Text, Button, View } from 'react-native';
 const { Component } = React;
 
 export default class HomePage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            page: null,
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: false,
+    };
+    this.handleButtonPress = this.handleButtonPress.bind(this);
+  }
 
-    render() {
-        return (
-            <Text>
-              Lorem ipsum dolor sit amet, ea qui vidisse dissentias, duo
-              dissentias constituam at. Eum copiosae liberavisse in, dolore
-              vivendum duo no. Has eu admodum percipit, eius magna
-              neglegentur qui id, ad sonet minimum mei. Ad quo clita putent,
-              te pro summo perpetua. Mazim recusabo nec in, te cum probatus
-              deserunt temporibus, vim ancillae contentiones at.
-            </Text>
-        );
-    }
+  handleButtonPress() {
+    this.setState({ page: true });
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+      <Text> Welcome! </Text>
+      <Text style={{marginBottom: "5px"}}> Choose an activity: </Text>
+    <Button 
+        onPress={this.handleButtonPress}
+        title="Click me!"
+        accessibilityLabel="This is a button!"
+    />
+      </View>
+    );
+  }
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});
