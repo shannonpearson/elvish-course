@@ -23,52 +23,55 @@ export default class WordMatch extends Component {
 
     randomWord() {
         const options = shuffle(this.keys).slice(0, 4);
+        console.log('options', options)
         const choices = map(options, (key) => {
             return words[key];
         });
-        this.setState({ currentWord: options[0], choices, guess: '' });
+        console.log('choices', choices);
+        this.setState({ currentWord: options[0], choices: shuffle(choices), guess: '' }, () => {console.log(this.state)});
     }
 
-    handleChoose(e) {
-        this.setState({ guess: e.target.value });
+    handleChoose(event) {
+        this.setState({ guess: event._dispatchInstances.memoizedProps.accessibilityLabel });
     }
 
     render() {
-        const loading = !this.state.currentWord.length;
         return (
             <View>
-                {loading || <ActivityIndicator size="large" />}
-                {loading && 
+                {!!this.state.currentWord.length || <ActivityIndicator size="large" />}
+                {!!this.state.currentWord.length && 
                     <View>
                         <Text> {this.state.currentWord} </Text>
-                        {this.state.choices.map((option) => {
-                            let color;
-                            if (this.state.guess.length) {
-                                if (option === words[this.state.currentWord]) {
-                                    color = '#2ed114';
-                                } else if (this.state.guess === option) {
-                                        color = '#dd1313';
-                                } else {
-                                    color = '#a2c0f2';
-                                }
-                            } else {
-                                color = '#a2c0f2';
-                            }
+                        {
+                            this.state.choices.map((option) => {
+                            // let color;
+                            // if (this.state.guess.length) {
+                            //     if (option === words[this.state.currentWord]) {
+                            //         color = '#2ed114';
+                            //     } else if (this.state.guess === option) {
+                            //             color = '#dd1313';
+                            //     } else {
+                            //         color = '#a2c0f2';
+                            //     }
+                            // } else {
+                            //     color = '#a2c0f2';
+                            // }
                             return (
                             <Button
                                 onPress={this.handleChoose}
                                 title={option}
-                                value={option}
-                                color={color}
-                                accessibilityLabel={'Select option ' + option}
+                                key={option}
+                                accessibilityLabel={option}
                             />)
-                        })}
-                        {this.state.guess.length &&
-                            <Button
-                                onPress={this.randomWord}
-                                title="Next"
-                                accessibilityLabel="Advance to next word"
-                            />
+                        })
+                    }
+                        {
+                            // this.state.guess.length &&
+                            // <Button
+                            //     onPress={this.randomWord}
+                            //     title="Next"
+                            //     accessibilityLabel="Advance to next word"
+                            // />
                         }
                     </View>
                 }

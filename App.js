@@ -7,7 +7,6 @@ export default class App extends Component {
   render() {
     return <View>
         <Text> sup </Text>
-        <Text> something </Text>
         <HomePage />
         <Text> hmm </Text>
       </View>;

@@ -16,8 +16,10 @@ export default class HomePage extends Component {
       console.log('mounted home page')
   }
 
-  handleButtonPress(e) {
-    this.setState({ page: e.target.value });
+  handleButtonPress(event) {
+    console.log('button press');
+    const page = event._dispatchInstances.memoizedProps.accessibilityLabel;
+    this.setState({ page });
   }
 
   render() {
@@ -28,14 +30,13 @@ export default class HomePage extends Component {
         <Button 
             onPress={this.handleButtonPress}
             title="About"
-            value="about"
-            accessibilityLabel="Read about Quenya"
+            accessibilityLabel="about"
         />
         <Button
             onPress={this.handleButtonPress}
             title="Match Words"
             value="match"
-            accessibilityLabel="Choose option to play words match"
+            accessibilityLabel="match"
         />
         {this.state.page === 'about' && <About />}
         {this.state.page === 'match' && <WordMatch />}
