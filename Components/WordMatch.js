@@ -44,22 +44,23 @@ export default class WordMatch extends Component {
                         <Text> {this.state.currentWord} </Text>
                         {
                             this.state.choices.map((option) => {
-                            // let color;
-                            // if (this.state.guess.length) {
-                            //     if (option === words[this.state.currentWord]) {
-                            //         color = '#2ed114';
-                            //     } else if (this.state.guess === option) {
-                            //             color = '#dd1313';
-                            //     } else {
-                            //         color = '#a2c0f2';
-                            //     }
-                            // } else {
-                            //     color = '#a2c0f2';
-                            // }
+                            let color;
+                            if (this.state.guess.length) {
+                                if (option === words[this.state.currentWord]) {
+                                    color = '#2ed114';
+                                } else if (option === this.state.guess) {
+                                        color = '#dd1313';
+                                } else {
+                                    color = '#a2c0f2';
+                                }
+                            } else {
+                                color = '#a2c0f2';
+                            }
                             return (
                             <Button
                                 onPress={this.handleChoose}
                                 title={option}
+                                color={color}
                                 key={option}
                                 accessibilityLabel={option}
                             />)
