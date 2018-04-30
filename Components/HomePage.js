@@ -1,30 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, Button, View } from 'react-native';
-const { Component } = React;
 
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: false,
+      page: null,
     };
     this.handleButtonPress = this.handleButtonPress.bind(this);
   }
 
-  handleButtonPress() {
-    this.setState({ page: true });
+  handleButtonPress(e) {
+    this.setState({ page: e.target.value });
   }
 
   render() {
     return (
+
       <View style={styles.container}>
-      <Text> Welcome! </Text>
-      <Text style={{marginBottom: "5px"}}> Choose an activity: </Text>
-    <Button 
-        onPress={this.handleButtonPress}
-        title="Click me!"
-        accessibilityLabel="This is a button!"
-    />
+        {this.state.page || 
+            <View>
+                <Text> Welcome! </Text>
+                <Text style={{marginBottom: "5px"}}> Choose an activity: </Text>
+                <Button 
+                    onPress={this.handleButtonPress}
+                    title="About"
+                    value="about"
+                    accessibilityLabel="Read about Quenya"
+                />
+                <Button
+                    onPress={this.handleButtonPress}
+                    title="Match Words"
+                    value="match"
+                    accessibilityLabel="Choose option to play words match"
+                />
+            </View>
+        }
       </View>
     );
   }
