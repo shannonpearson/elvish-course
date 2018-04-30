@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import HomePage from './Components/HomePage';
 
 export default class App extends Component {
 
   render() {
-    return (
-      <HomePage/>
-    );
+    return <View>
+        <Text> sup </Text>
+        <Text> ??? </Text>
+        <HomePage />
+        <Text> hmm </Text>
+      </View>;
   }
 }

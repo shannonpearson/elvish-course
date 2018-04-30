@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Button, ActivityIndicator } from 'react-native';
+import { View, Text, Button, ActivityIndicator } from 'react-native';
 import words from '../data/SampleData';
 import { keys, shuffle, map } from 'lodash';
 
@@ -53,6 +53,13 @@ export default class WordMatch extends Component {
                                 accessibilityLabel={'Select option ' + option}
                             />
                         ))}
+                        {this.state.match === null ||
+                            <Button
+                                onPress={this.randomWord}
+                                title="Next"
+                                accessibilityLabel="Advance to next word"
+                            />
+                        }
                     </View>
                 }
             </View>

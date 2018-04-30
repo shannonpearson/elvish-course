@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 
 const About = () => (
     <View>    
-        <h3> About Quenya: </h3>
+        <Text> About Quenya: </Text>
         <Text> 
             Quenya is a fictional language devised by J. R. R. Tolkien and used by the Elves in his legendarium.
         </Text>
