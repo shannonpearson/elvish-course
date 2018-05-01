@@ -12,32 +12,32 @@ export default class HomePage extends Component {
     this.handleButtonPress = this.handleButtonPress.bind(this);
   }
 
-  componentDidMount() {
-      console.log('mounted home page')
-  }
-
   handleButtonPress(event) {
-    console.log('button press');
     const page = event._dispatchInstances.memoizedProps.accessibilityLabel;
     this.setState({ page });
   }
 
   render() {
     return (
-      <View >
-        <Text> Welcome! </Text>
-        <Text> Choose an activity: </Text>
-        <Button 
-            onPress={this.handleButtonPress}
-            title="About"
-            accessibilityLabel="about"
-        />
-        <Button
-            onPress={this.handleButtonPress}
-            title="Match Words"
-            value="match"
-            accessibilityLabel="match"
-        />
+      <View style={styles.container}>
+            <View>
+                <Text> Welcome! </Text>
+                <Text> Choose an activity: </Text>
+            </View>
+            <View style={styles.button}>
+                <Button 
+                    onPress={this.handleButtonPress}
+                    title="About"
+                    accessibilityLabel="about"
+                />
+            </View>
+            <View style={styles.button}>
+                <Button
+                    onPress={this.handleButtonPress}
+                    title="Match Words"
+                    accessibilityLabel="match"
+                />
+            </View>
         {this.state.page === 'about' && <About />}
         {this.state.page === 'match' && <WordMatch />}
       </View>
@@ -48,8 +48,15 @@ export default class HomePage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    // flexDirection: "column",
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
+  button: {
+    width: "80%",
+    // flex: 1,
+  },
+  text: {
+    //   flex: 1,
+  }
 });
