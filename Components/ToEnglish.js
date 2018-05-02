@@ -21,7 +21,7 @@ export default class ToEnglish extends Component {
 
     randomSentence() {
         this.setState({
-            currentSentence: this.keys[Math.floor(Math.random() * this.keys.length)];
+            currentSentence: this.keys[Math.floor(Math.random() * this.keys.length)],
         })
     }
 
@@ -37,9 +37,11 @@ export default class ToEnglish extends Component {
     }
     
     render() {
-        <View>
-            <Text> {this.state.currentSentence} </Text>
-            <TextInput> </TextInput>
-        </View>
+        return (
+            <View>
+                <Text> {this.state.currentSentence} </Text>
+                <TextInput> </TextInput>
+            </View>
+        )
     }
 }

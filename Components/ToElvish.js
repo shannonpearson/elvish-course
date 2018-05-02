@@ -38,11 +38,12 @@ export default class ToElvish extends Component {
     }
 
     render() {
-
-        <View style={styles.container}>
-            <Text> {this.state.currentSentence} </Text>
-            <TextInput> </TextInput>
-        </View>
+        return (
+            <View style={styles.container}>
+                <Text> {this.state.currentSentence} </Text>
+                <TextInput> </TextInput>
+            </View>
+        )
 
     }
 }

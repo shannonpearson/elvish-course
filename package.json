@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "1.14.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
     "jest-expo": "~27.0.0",
+    "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -19,12 +22,23 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "eslint": "^4.19.1",
     "expo": "^27.0.1",
     "lodash": "^4.17.10",
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-navigation": "^1.5.11",
     "underscore": "^1.9.0"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shannonpearson/elvish-course.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shannonpearson/elvish-course/issues"
+  },
+  "homepage": "https://github.com/shannonpearson/elvish-course#readme"
 }
