@@ -9,15 +9,20 @@ export default class HomePage extends Component {
     this.state = {
       page: null,
     };
-    this.handleButtonPress = this.handleButtonPress.bind(this);
+    // this.handleButtonPress = this.handleButtonPress.bind(this);
   }
 
-  handleButtonPress(event) {
-    const page = event._dispatchInstances.memoizedProps.accessibilityLabel;
-    this.setState({ page });
+  static navigationOptions = {
+      title: 'Welcome',
   }
+
+//   handleButtonPress(event) {
+//     const page = event._dispatchInstances.memoizedProps.accessibilityLabel;
+//     this.setState({ page });
+//   }
 
   render() {
+    const { navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
             <View>
@@ -26,14 +31,18 @@ export default class HomePage extends Component {
             </View>
             <View style={styles.button}>
                 <Button 
-                    onPress={this.handleButtonPress}
+                    onPress={() => {
+                        navigate('About');
+                    }}
                     title="About"
                     accessibilityLabel="about"
                 />
             </View>
             <View style={styles.button}>
                 <Button
-                    onPress={this.handleButtonPress}
+                    onPress={() => {
+                        navigate('WordMatch');
+                    }}
                     title="Match Words"
                     accessibilityLabel="match"
                 />
@@ -48,15 +57,12 @@ export default class HomePage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection: "column",
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
   button: {
     width: "80%",
-    // flex: 1,
   },
   text: {
-    //   flex: 1,
   }
 });
