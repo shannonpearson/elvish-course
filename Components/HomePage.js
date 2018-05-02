@@ -9,24 +9,17 @@ export default class HomePage extends Component {
     this.state = {
       page: null,
     };
-    // this.handleButtonPress = this.handleButtonPress.bind(this);
   }
 
   static navigationOptions = {
       title: 'Welcome',
   }
 
-//   handleButtonPress(event) {
-//     const page = event._dispatchInstances.memoizedProps.accessibilityLabel;
-//     this.setState({ page });
-//   }
-
   render() {
     const { navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
             <View>
-                <Text> Welcome! </Text>
                 <Text> Choose an activity: </Text>
             </View>
             <View style={styles.button}>
@@ -35,7 +28,7 @@ export default class HomePage extends Component {
                         navigate('About');
                     }}
                     title="About"
-                    accessibilityLabel="about"
+                    accessibilityLabel="about page"
                 />
             </View>
             <View style={styles.button}>
@@ -44,11 +37,28 @@ export default class HomePage extends Component {
                         navigate('WordMatch');
                     }}
                     title="Match Words"
-                    accessibilityLabel="match"
+                    accessibilityLabel="match words"
                 />
             </View>
-        {this.state.page === 'about' && <About />}
-        {this.state.page === 'match' && <WordMatch />}
+            <View style={styles.button}>
+                <Button
+                    onPress={() => {
+                        navigate('ToEnglish');
+                    }}
+                    title="Translate to English"
+                    accessibilityLabel="translate to english"
+                />
+            </View>
+            <View style={styles.button}>
+                <Button
+                    onPress={() => {
+                        navigate('ToElvish');
+                    }}
+                    title="Translate to Elvish"
+                    accessibilityLabel="translate to elvish"
+                />
+            </View>
+
       </View>
     );
   }
