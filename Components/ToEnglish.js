@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { keys } from 'lodash';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Keyboard } from 'react-native';
 
 import { sentences } from '../data/SampleData';
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+  container: {
+    flex: 1,
     justifyContent: 'space-evenly',
-    }
+    alignItems: 'center',
+  },
+  default: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textInput: {
+    width: '80%',
+  },
+  contentContainer: {
+    backgroundColor: 'purple',
+    flex: 0.95,
+    justifyContent: 'space-evenly',
+  },
 });
 
 export default class ToEnglish extends Component {
@@ -24,11 +38,14 @@ export default class ToEnglish extends Component {
     this.randomSentence = this.randomSentence.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.keys = keys(sentences['1']);
-    this.printInput = this.printInput.bind(this);
   }
 
   componentWillMount() {
     this.randomSentence();
+  }
+
+  componentWillUnmount() {
+    Keyboard.dismiss();
   }
 
   randomSentence() {
@@ -51,32 +68,38 @@ export default class ToEnglish extends Component {
       console.log('incorrect answer');
       this.setState({ incorrect: this.state.incorrect + 1 });
     }
-    console.log(sentences['1'][this.state.currentSentence].length + ' is equal to ' +  this.state.input.toLowerCase().length);
-    console.log('are these equal?', this.state.input.toLowerCase() === sentences['1'][this.state.currentSentence]);
     this.randomSentence();
     this.textInput.clear();
-  }
-
-  printInput(event) {
-    console.log('x' + event.nativeEvent.text + 'x');
+    Keyboard.dismiss();
   }
 
   render() {
     return (
         <View style={styles.container}>
-            <Text> Hello nerds </Text>
-            <Text> {this.state.currentSentence} </Text>
-            <TextInput
-                ref={(input) => { this.textInput = input; }}
-                onChange={this.updateInput}
-            ></TextInput>
-            <Button
-                onPress={this.submitAnswer}
-                title="Submit"
-                accessibilityLabel="submit answer"
-            ></Button>
-            <Text> Correct: { this.state.correct } </Text>
-            <Text> Incorrect: { this.state.incorrect } </Text>
+        <View style={{ flex: 1}}>
+            <KeyboardAvoidingView
+                behavior="position"
+                contentContainerStyle={styles.contentContainer}
+                enabled={true}
+            >
+                <Text style={styles.default}> Hello nerds </Text>
+                <Text style={styles.default}> {this.state.currentSentence} </Text>
+                <TextInput
+                    ref={(input) => { this.textInput = input; }}
+                    onChange={this.updateInput}
+                    style={styles.textInput}
+                />
+                <Button
+                    onPress={this.submitAnswer}
+                    title="Submit"
+                    accessibilityLabel="submit answer"
+                />
+            </KeyboardAvoidingView>
+        </View>
+            <View style={styles.default}>
+                <Text> Correct: { this.state.correct } </Text>
+                <Text> Incorrect: { this.state.incorrect } </Text>
+            </View>
         </View>
     );
   }
