@@ -10,18 +10,25 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
   },
-  default: {
+  bottomContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   textInput: {
+    // flex: 1,
     width: '80%',
   },
   topContainer: {
     backgroundColor: 'purple',
     flex: 0.95,
     justifyContent: 'space-evenly',
+    alignItems: 'center',
+    width: '100%',
+  },
+  button: {
+    // flex: 1,
+    width: '80%',
   },
 });
 
@@ -90,9 +97,10 @@ export default class ToEnglish extends Component {
                     onPress={this.submitAnswer}
                     title="Submit"
                     accessibilityLabel="submit answer"
+                    style={styles.button}
                 />
             </View>
-            <View style={styles.default}>
+            <View style={styles.bottomContainer}>
                 <Text> Correct: { this.state.correct } </Text>
                 <Text> Incorrect: { this.state.incorrect } </Text>
             </View>
