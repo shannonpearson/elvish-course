@@ -57,7 +57,7 @@ export default class ToElvish extends React.Component {
     return (
       <View style={styles.container}>
           <Text> {this.state.currentSentence} </Text>
-          <TextInput onTextChange={this.submitAnswer}> </TextInput>
+          <TextInput> </TextInput>
       </View>
     );
   }

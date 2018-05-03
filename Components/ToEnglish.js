@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { keys } from 'lodash';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 
 import { sentences } from '../data/SampleData';
 
@@ -13,6 +13,7 @@ export default class ToEnglish extends Component {
     };
     this.submitAnswer = this.submitAnswer.bind(this);
     this.randomSentence = this.randomSentence.bind(this);
+    this.updateInput = this.updateInput.bind(this);
     this.keys = keys(sentences['1']);
   }
 
@@ -26,15 +27,21 @@ export default class ToEnglish extends Component {
     });
   }
 
+  updateInput(event) {
+    console.log('on text change')
+    this.setState({ input: event.nativeEvent.text });
+  }
+
   // figure out how to account for capitalization in data
   submitAnswer() { // answer is key so check if sentences at input is equal to current sentence
-    if (this.state.currentSentence.toLowerCase() === sentences['1'][this.state.input.toLowerCase()]) {
-      this.setState({ correct: this.state.correct + 1 });
-      this.randomSentence();
-    } else {
-      this.setState({ incorrect: this.state.incorrect + 1 });
-      this.randomSentence();
-    }
+    console.log('answer submitted', this.state.input);
+    // if (this.state.currentSentence.toLowerCase() === sentences['1'][this.state.input.toLowerCase()]) {
+    //   this.setState({ correct: this.state.correct + 1 });
+    //   this.randomSentence();
+    // } else {
+    //   this.setState({ incorrect: this.state.incorrect + 1 });
+    //   this.randomSentence();
+    // }
   }
 
   render() {
@@ -42,7 +49,14 @@ export default class ToEnglish extends Component {
         <View>
             <Text> Hello nerds </Text>
             <Text> {this.state.currentSentence} </Text>
-            <TextInput> </TextInput>
+            <TextInput
+                onChange={this.updateInput}
+            > </TextInput>
+            <Button
+                onPress={this.submitAnswer}
+                title="Submit"
+                accessibilityLabel="submit answer"
+            ></Button>
         </View>
     );
   }
