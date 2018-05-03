@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { keys } from 'lodash';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 import { sentences } from '../data/SampleData';
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    justifyContent: 'space-evenly',
+    }
+});
 
 export default class ToEnglish extends Component {
   constructor(props) {
@@ -17,6 +24,7 @@ export default class ToEnglish extends Component {
     this.randomSentence = this.randomSentence.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.keys = keys(sentences['1']);
+    this.printInput = this.printInput.bind(this);
   }
 
   componentWillMount() {
@@ -43,22 +51,25 @@ export default class ToEnglish extends Component {
       console.log('incorrect answer');
       this.setState({ incorrect: this.state.incorrect + 1 });
     }
-    // console.log(sentences['1'][this.state.currentSentence].length + ' is equal to ' +  this.state.input.toLowerCase().length);
-    // console.log('are these equal?', this.state.input.toLowerCase() === sentences['1'][this.state.currentSentence]);
+    console.log(sentences['1'][this.state.currentSentence].length + ' is equal to ' +  this.state.input.toLowerCase().length);
+    console.log('are these equal?', this.state.input.toLowerCase() === sentences['1'][this.state.currentSentence]);
     this.randomSentence();
     this.textInput.clear();
   }
 
+  printInput(event) {
+    console.log('x' + event.nativeEvent.text + 'x');
+  }
+
   render() {
     return (
-        <View>
+        <View style={styles.container}>
             <Text> Hello nerds </Text>
             <Text> {this.state.currentSentence} </Text>
             <TextInput
                 ref={(input) => { this.textInput = input; }}
                 onChange={this.updateInput}
-                // onSubmitEditing={this.on}
-            > </TextInput>
+            ></TextInput>
             <Button
                 onPress={this.submitAnswer}
                 title="Submit"
