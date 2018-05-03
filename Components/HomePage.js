@@ -1,7 +1,31 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Button, View } from 'react-native';
-import About from './About';
-import WordMatch from './WordMatch';
+// import About from './About';
+// import WordMatch from './WordMatch';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  textContainer: {
+    flex: 1,
+    backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  buttonContainer: {
+    flex: 2,
+    backgroundColor: 'purple',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  button: {
+    width: '80%',
+  },
+  text: {},
+});
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -12,11 +36,11 @@ export default class HomePage extends Component {
   }
 
   static navigationOptions = {
-      title: 'Welcome',
+    title: 'Welcome',
   }
 
   render() {
-    const { navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
             <View style={styles.textContainer}>
@@ -24,7 +48,7 @@ export default class HomePage extends Component {
             </View>
             <View style={styles.buttonContainer}>
                 <View style={styles.button}>
-                    <Button 
+                    <Button
                         onPress={() => {
                             navigate('About');
                         }}
@@ -63,29 +87,4 @@ export default class HomePage extends Component {
       </View>
     );
   }
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-  },
-  textContainer: {
-      flex: 1,
-      backgroundColor: 'lightblue',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-  },
-  buttonContainer: {
-      flex: 2,
-      backgroundColor: 'purple',
-      alignItems: 'center',
-      justifyContent: 'space-evenly',
-  },
-  button: {
-    width: "80%",
-  },
-  text: {
-  }
-});
+}

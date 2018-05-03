@@ -1,9 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { keys } from 'lodash';
-import sentences from '../data/SampleData';
+import { sentences } from '../data/SampleData';
 
-export default class ToElvish extends Component {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  sentence: {
+    backgroundColor: 'lightgreen',
+  },
+});
+
+export default class ToElvish extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +23,7 @@ export default class ToElvish extends Component {
     };
     this.submitAnswer = this.submitAnswer.bind(this);
     this.randomSentence = this.randomSentence.bind(this);
+    this.updateInput = this.updateInput.bind(this);
     this.keys = keys(sentences['1']);
   }
 
@@ -27,7 +37,13 @@ export default class ToElvish extends Component {
     });
   }
 
+  updateInput(input) {
+    console.log(input);
+    this.setState({ input });
+  }
+
   submitAnswer() { // answer is value so check if sentence key = value
+    console.log('answer submitted: ', this.state.input);
     if (sentences['1'][this.state.currentSentence.toLowerCase()] === this.state.input.toLowerCase()) {
       this.setState({ correct: this.state.correct + 1 });
       this.randomSentence();
@@ -39,22 +55,10 @@ export default class ToElvish extends Component {
 
   render() {
     return (
-        <View style={styles.container}>
-            <Text> {this.state.currentSentence} </Text>
-            <TextInput> </TextInput>
-        </View>
-    )
+      <View style={styles.container}>
+          <Text> {this.state.currentSentence} </Text>
+          <TextInput onTextChange={this.submitAnswer}> </TextInput>
+      </View>
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-  },
-  input: {
-
-  },
-  sentence: {
-
-  },
-});
