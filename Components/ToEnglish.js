@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   textInput: {
     width: '80%',
   },
-  contentContainer: {
+  topContainer: {
     backgroundColor: 'purple',
     flex: 0.95,
     justifyContent: 'space-evenly',
@@ -76,11 +76,8 @@ export default class ToEnglish extends Component {
   render() {
     return (
         <View style={styles.container}>
-        <View style={{ flex: 1}}>
-            <KeyboardAvoidingView
-                behavior="position"
-                contentContainerStyle={styles.contentContainer}
-                enabled={true}
+            <View
+                style={styles.topContainer}
             >
                 <Text style={styles.default}> Hello nerds </Text>
                 <Text style={styles.default}> {this.state.currentSentence} </Text>
@@ -94,8 +91,7 @@ export default class ToEnglish extends Component {
                     title="Submit"
                     accessibilityLabel="submit answer"
                 />
-            </KeyboardAvoidingView>
-        </View>
+            </View>
             <View style={styles.default}>
                 <Text> Correct: { this.state.correct } </Text>
                 <Text> Incorrect: { this.state.incorrect } </Text>
