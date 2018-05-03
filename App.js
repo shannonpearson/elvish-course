@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import About from './Components/About';
@@ -14,14 +13,6 @@ const App = StackNavigator({
   WordMatch: { screen: WordMatch },
   ToElvish: { screen: ToElvish },
   ToEnglish: { screen: ToEnglish },
-});
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flex: 1,
-    backgroundColor: "#d0baef",
-  }
 });
 
 export default App;

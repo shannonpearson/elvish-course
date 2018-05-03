@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { keys } from 'lodash';
 import { View, Text, TextInput } from 'react-native';
 
 import sentences from '../data/SampleData';
@@ -37,11 +38,11 @@ export default class ToEnglish extends Component {
     }
     
     render() {
-        return (
-            <View>
-                <Text> {this.state.currentSentence} </Text>
-                <TextInput> </TextInput>
-            </View>
-        )
+        // return (
+            // <View>
+            //     <Text> {this.state.currentSentence} </Text>
+            //     <TextInput> </TextInput>
+            // </View>
+        // )
     }
 }

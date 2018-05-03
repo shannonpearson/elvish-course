@@ -12,14 +12,6 @@ class About extends Component {
         }
     }
 
-    componentWillMount() {
-        console.log('component will mount');
-    }
-
-    componentDidMount() {
-        console.log('component did mount');
-    }
-
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container}>    

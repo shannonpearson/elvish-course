@@ -19,10 +19,10 @@ export default class HomePage extends Component {
     const { navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-            <View style={{ flex: 1 }}>
+            <View style={styles.textContainer}>
                 <Text> Choose an activity: </Text>
             </View>
-            <View style={{ flex: 2 }}>
+            <View style={styles.buttonContainer}>
                 <View style={styles.button}>
                     <Button 
                         onPress={() => {
@@ -71,8 +71,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
-  buttonGroup: {
-      flex: 2
+  textContainer: {
+      flex: 1,
+      backgroundColor: 'lightblue',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+  },
+  buttonContainer: {
+      flex: 2,
+      backgroundColor: 'purple',
+      alignItems: 'center',
+      justifyContent: 'space-evenly',
   },
   button: {
     width: "80%",

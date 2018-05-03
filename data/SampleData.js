@@ -14,7 +14,18 @@ const words = {
     nu: 'under',
   },
   2: {
-
+    atta: 'two',
+    hen: 'eye',
+    ranco: 'arm',
+    ando: 'gate',
+    cirya: 'ship',
+    aiwe: 'bird',
+    talan: 'floor',
+    ner: 'man',
+    nis: 'woman',
+    sar: 'stone',
+    alda: 'tree',
+    oron: 'mountain',
   },
   3: {
 
@@ -44,7 +55,22 @@ const sentences = {
     'Anar ar Isil': ['the sun and the moon', 'sun and moon'],
   },
   2: {
-
+    hendu: 'eyes (dual)',
+    'atta hendi': 'two eyes',
+    aldu: 'trees (dual)',
+    'atta aldar': 'two trees',
+    'mine ner ar mine nis': 'one man and one woman',
+    'i sardi': 'the stones',
+    talami: 'floors',
+    oronti: 'mountains',
+    'atta ciryar': 'two ships',
+    'ciryat': 'ships (dual)',
+    'rancot': 'arms',
+    'two mountains': 'orontu',
+    'double gate': 'andu',
+    'two birds (dual)': 'aiwet',
+    'two birds': 'aiwi',
+    'nert ar nist(?)': 'men and women',
   },
   3: {
 
