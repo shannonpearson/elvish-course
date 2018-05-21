@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Button, View, Keyboard } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 // import About from './About';
 // import WordMatch from './WordMatch';
 
@@ -52,12 +51,10 @@ export default class HomePage extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <LinearGradient colors={['#8CAOD7', '#9D79BC', '#A14DAO']} style={styles.linearGradient}>
 
         <View style={styles.textContainer}>
             <Text style={{ color: '#7E1F86' }}> Choose an activity: </Text>
         </View>
-        </LinearGradient>
         <View style={styles.buttonContainer}>
             <View style={styles.button}>
                 <Button
