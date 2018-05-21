@@ -20,8 +20,11 @@ const AppNavigator = StackNavigator({
 });
 
 class App extends Component {
-  this.state = {
-    loggedIn: false;
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: null,
+    };
   }
 
   componentWillMount() {
@@ -34,6 +37,7 @@ class App extends Component {
       messagingSenderId: '868722979444',
     });
 
+    // this takes a sec to check for authentication so set a case for if loggedIn is null
     firebase.auth().onAuthStateChanged((user) => { // user is undefined if signed out, object if signed in
       this.setState({ loggedIn: user ? true : false });
     })

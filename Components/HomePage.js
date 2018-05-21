@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Button, View, Keyboard } from 'react-native';
+import firebase from 'firebase';
 // import About from './About';
 // import WordMatch from './WordMatch';
 
@@ -33,6 +34,7 @@ export default class HomePage extends Component {
     this.state = {
       page: null,
     };
+    this.logOut = this.logOut.bind(this);
   }
 
   static navigationOptions = {
@@ -40,7 +42,11 @@ export default class HomePage extends Component {
   }
 
   componentDidMount() {
-      Keyboard.dismiss();
+    Keyboard.dismiss();
+  }
+
+  logOut() {
+    firebase.auth().signOut();
   }
 
   render() {
@@ -100,6 +106,14 @@ export default class HomePage extends Component {
                     color="#91C4F2"
                     title="Translate to Elvish"
                     accessibilityLabel="translate to elvish"
+                />
+            </View>
+            <View style={styles.button}>
+                <Button
+                    onPress={this.logOut}
+                    color="#91C4F2"
+                    title="Log Out"
+                    accessibilityLabel="log out"
                 />
             </View>
         </View>
