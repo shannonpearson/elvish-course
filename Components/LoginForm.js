@@ -39,13 +39,26 @@ class LoginForm extends Component {
   }
 
   logIn() {
-    console.log('press log in');
     const { email, password } = this.state;
-    firebase.auth().signInWithEmailAndPassword(email, password);
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('logged in successfully');
+      })
+      .catch((error) => {
+        console.log('error logging in', error);
+        // alert incorrect email or password
+      })
   }
 
   signUp() {
-    console.log('press sign up');
+    const { email, password } = this.state;
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('sign up successful');
+      })
+      .catch((error) => {
+        console.log('error signing up', error);
+      })
   }
 
   render() {
