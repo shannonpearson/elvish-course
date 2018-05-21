@@ -9,10 +9,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
-  linearGradient: {
-    flex: 1,
-    width: '100%',
-  },
   textContainer: {
     flex: 1,
     alignItems: 'center',
@@ -56,6 +52,16 @@ export default class HomePage extends Component {
             <Text style={{ color: '#7E1F86' }}> Choose an activity: </Text>
         </View>
         <View style={styles.buttonContainer}>
+            <View style={styles.button}>
+                <Button
+                    onPress={() => {
+                        navigate('Login');
+                    }}
+                    title="Login"
+                    color="#91C4F2"
+                    accessibilityLabel="login form"
+                />
+            </View>
             <View style={styles.button}>
                 <Button
                     onPress={() => {
