@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
 import firebase from 'firebase';
 
 const { Component } = React;
@@ -23,6 +23,7 @@ class LoginForm extends Component {
     this.state = {
       email: '',
       password: '',
+      loading: false,
     }
     this.updateEmailInput = this.updateEmailInput.bind(this);
     this.updatePasswordInput = this.updatePasswordInput.bind(this);
@@ -39,25 +40,33 @@ class LoginForm extends Component {
   }
 
   logIn() {
+    this.setState({ loading: true });
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log('logged in successfully');
+        this.setState({ loading: false });
       })
       .catch((error) => {
         console.log('error logging in', error);
+        this.setState({ loading: false });
         // alert incorrect email or password
       })
   }
 
+  // onLoginSuccess() {}
+
   signUp() {
+    this.setState({ loading: true });
     const { email, password } = this.state;
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
         console.log('sign up successful');
+        this.setState({ loading: false });
       })
       .catch((error) => {
         console.log('error signing up', error);
+        this.setState({ loading: false });
       })
   }
 
@@ -88,6 +97,7 @@ class LoginForm extends Component {
           title="Sign Up"
           accessibilityLabel="sign up"
         />
+        { this.state.loading && <ActivityIndicator size="small" /> }
       </View>
     );
   }

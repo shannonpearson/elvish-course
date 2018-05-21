@@ -20,6 +20,10 @@ const AppNavigator = StackNavigator({
 });
 
 class App extends Component {
+  this.state = {
+    loggedIn: false;
+  }
+
   componentWillMount() {
     firebase.initializeApp({
       apiKey: 'AIzaSyAWwgTaSzsYhLBWShofpKNUNuNv15JLT94',
@@ -29,6 +33,10 @@ class App extends Component {
       storageBucket: 'elvish-40a36.appspot.com',
       messagingSenderId: '868722979444',
     });
+
+    firebase.auth().onAuthStateChanged((user) => { // user is undefined if signed out, object if signed in
+      this.setState({ loggedIn: user ? true : false });
+    })
   }
 
   render() {
