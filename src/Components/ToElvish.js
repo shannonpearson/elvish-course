@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { keys } from 'lodash';
-import { sentences } from '../data/SampleData';
+import { sentences } from '../../data/SampleData';
 
 const styles = StyleSheet.create({
   container: {

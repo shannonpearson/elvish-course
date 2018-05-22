@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { keys } from 'lodash';
 import { View, Text, TextInput, Button, StyleSheet, Keyboard } from 'react-native';
 
-import { sentences } from '../data/SampleData';
+import { sentences } from '../../data/SampleData';
 
 const styles = StyleSheet.create({
   container: {

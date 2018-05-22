@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import firebase from 'firebase';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-import About from './Components/About';
-import HomePage from './Components/HomePage';
-import WordMatch from './Components/WordMatch';
-import ToElvish from './Components/ToElvish';
-import ToEnglish from './Components/ToEnglish';
-import LoginForm from './Components/LoginForm';
+import reducers from './src/reducers'
+import About from './src/Components/About';
+import HomePage from './src/Components/HomePage';
+import WordMatch from './src/Components/WordMatch';
+import ToElvish from './src/Components/ToElvish';
+import ToEnglish from './src/Components/ToEnglish';
+import LoginForm from './src/Components/LoginForm';
 
 
 const AppNavigator = StackNavigator({
@@ -44,7 +47,11 @@ class App extends Component {
   }
 
   render() {
-    return (<AppNavigator />);
+    return (
+      <Provider store={createStore(reducers)}>
+        <AppNavigator />
+      </Provider>
+    );
   }
 }
 
