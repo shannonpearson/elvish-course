@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
-import { loginSuccess, signupSuccess } from '../actions/index';
+import loginSuccess from '../actions/index';
 
 const { Component } = React;
 
@@ -49,11 +49,13 @@ class LoginForm extends Component {
       .then((user) => {
         console.log('logged in successfully');
         this.setState({ loading: false });
-        // this.props.loginSuccess(user);
-        console.log(user);
+        this.props.loginSuccess(user);
+      }).then(() => {
+        console.log('USER EMAIL', this.props.userEmail);
       })
       .catch((error) => {
         console.log('error logging in', error);
+        // console.log('PROPS', this.props);
         this.setState({ loading: false, password: '' });
         // alert incorrect email or password
       });
@@ -68,7 +70,7 @@ class LoginForm extends Component {
       .then((user) => {
         console.log('sign up successful');
         this.setState({ loading: false });
-        // this.props.signupSuccess(user);
+        this.props.login(user);
         console.log(user);
       })
       .catch((error) => {
@@ -112,7 +114,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  email: state.auth.user,
+  userEmail: state.auth.userEmail,
 });
 
-export default connect(mapStateToProps, { loginSuccess, signupSuccess })(LoginForm);
+export default connect(mapStateToProps, { loginSuccess })(LoginForm);

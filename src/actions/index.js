@@ -2,14 +2,7 @@ import { LOGIN_SUCCESS, SIGNUP_SUCCESS } from './types';
 
 const loginSuccess = user => ({
   type: LOGIN_SUCCESS,
-  payload: { user },
+  payload: { user: user.user },
 });
 
-const signupSuccess = user => ({
-  type: SIGNUP_SUCCESS,
-  payload: { user },
-});
-
-// these might return the same 'user' object so if so, probably just have one 'auth success' action that updates state on success for both login and signup
-
-export { loginSuccess, signupSuccess };
+export default loginSuccess;

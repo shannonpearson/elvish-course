@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, SIGNUP_SUCCESS } from '../actions/types';
+import { LOGIN_SUCCESS } from '../actions/types';
 
 const INITIAL_STATE = {
   user: null,
@@ -7,9 +7,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return { ...state, user: action.payload };
-    case SIGNUP_SUCCESS:
-      return { ...state, user: action.payload };
+      return { ...state, userEmail: action.payload.user.email };
     default:
       return state;
   }
