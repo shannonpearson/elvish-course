@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
 import connect from 'react-redux';
 import firebase from 'firebase';
 
-import { loginSuccess } from '../actions';
+import { loginSuccess, signupSuccess } from '../actions';
 
 const { Component } = React;
 
@@ -64,13 +64,15 @@ class LoginForm extends Component {
     this.setState({ loading: true });
     const { email, password } = this.state;
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((user) => {
         console.log('sign up successful');
         this.setState({ loading: false });
+        this.props.signupSuccess(user);
       })
       .catch((error) => {
         console.log('error signing up', error);
         this.setState({ loading: false });
+        // alert failure (depending on error? username exists or other?)
       });
   }
 
