@@ -42,7 +42,7 @@ class App extends Component {
 
     // this takes a sec to check for authentication so set a case for if loggedIn is null
     firebase.auth().onAuthStateChanged((user) => { // user is undefined if signed out, object if signed in
-      this.setState({ loggedIn: user ? true : false });
+      this.setState({ loggedIn: !!user });
     })
   }
 

@@ -43,7 +43,6 @@ class LoginForm extends Component {
   }
 
   logIn() {
-    console.log('props', this.props);
     this.setState({ loading: true });
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -51,7 +50,7 @@ class LoginForm extends Component {
         console.log('logged in successfully');
         this.setState({ loading: false });
         // this.props.loginSuccess(user);
-        console.log(loginSuccess);
+        console.log(user);
       })
       .catch((error) => {
         console.log('error logging in', error);
@@ -70,7 +69,7 @@ class LoginForm extends Component {
         console.log('sign up successful');
         this.setState({ loading: false });
         // this.props.signupSuccess(user);
-        console.log(signupSuccess);
+        console.log(user);
       })
       .catch((error) => {
         console.log('error signing up', error);
@@ -116,4 +115,4 @@ const mapStateToProps = state => ({
   email: state.auth.user,
 });
 
-export default connect(mapStateToProps)(LoginForm);
+export default connect(mapStateToProps, { loginSuccess, signupSuccess })(LoginForm);
