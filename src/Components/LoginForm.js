@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
+import connect from 'react-redux';
 import firebase from 'firebase';
+
+import { loginSuccess } from '../actions';
 
 const { Component } = React;
 
@@ -24,7 +27,7 @@ class LoginForm extends Component {
       email: '',
       password: '',
       loading: false,
-    }
+    };
     this.updateEmailInput = this.updateEmailInput.bind(this);
     this.updatePasswordInput = this.updatePasswordInput.bind(this);
     this.logIn = this.logIn.bind(this);
@@ -43,15 +46,16 @@ class LoginForm extends Component {
     this.setState({ loading: true });
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((user) => {
         console.log('logged in successfully');
         this.setState({ loading: false });
+        this.props.loginSuccess(user)
       })
       .catch((error) => {
         console.log('error logging in', error);
         this.setState({ loading: false });
         // alert incorrect email or password
-      })
+      });
   }
 
   // onLoginSuccess() {}
@@ -67,7 +71,7 @@ class LoginForm extends Component {
       .catch((error) => {
         console.log('error signing up', error);
         this.setState({ loading: false });
-      })
+      });
   }
 
   render() {
@@ -103,4 +107,9 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+const mapStateToProps = state => ({
+  email: state.auth.email,
+  password: state.auth.password,
+});
+
+export default connect(mapStateToProps, { loginSuccess })(LoginForm);

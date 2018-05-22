@@ -1,8 +1,8 @@
-import { LOGIN_ATTEMPT } from './types';
+import { LOGIN_SUCCESS } from './types';
 
-const loginAttempted = (email, password) => ({
-  type: LOGIN_ATTEMPT,
-  payload: { email, password },
+const loginSuccess = user => ({
+  type: LOGIN_SUCCESS,
+  payload: { user },
 });
 
-export default loginAttempted;
+export default loginSuccess;
