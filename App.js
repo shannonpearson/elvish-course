@@ -47,8 +47,10 @@ class App extends Component {
   }
 
   render() {
+    const store = createStore(reducers);
+    
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={store}>
         <AppNavigator />
       </Provider>
     );

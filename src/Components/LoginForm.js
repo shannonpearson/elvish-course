@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 import firebase from 'firebase';
 
-import { loginSuccess, signupSuccess } from '../actions';
+import { loginSuccess, signupSuccess } from '../actions/index';
 
 const { Component } = React;
 
@@ -43,17 +43,19 @@ class LoginForm extends Component {
   }
 
   logIn() {
+    console.log('props', this.props);
     this.setState({ loading: true });
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
         console.log('logged in successfully');
         this.setState({ loading: false });
-        this.props.loginSuccess(user)
+        // this.props.loginSuccess(user);
+        console.log(loginSuccess);
       })
       .catch((error) => {
         console.log('error logging in', error);
-        this.setState({ loading: false });
+        this.setState({ loading: false, password: '' });
         // alert incorrect email or password
       });
   }
@@ -67,7 +69,8 @@ class LoginForm extends Component {
       .then((user) => {
         console.log('sign up successful');
         this.setState({ loading: false });
-        this.props.signupSuccess(user);
+        // this.props.signupSuccess(user);
+        console.log(signupSuccess);
       })
       .catch((error) => {
         console.log('error signing up', error);
@@ -110,8 +113,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  email: state.auth.email,
-  password: state.auth.password,
+  email: state.auth.user,
 });
 
-export default connect(mapStateToProps, { loginSuccess })(LoginForm);
+export default connect(mapStateToProps)(LoginForm);
