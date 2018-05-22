@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import LoginReducer from './LoginReducer';
+import AuthReducer from './AuthReducer';
 
 export default combineReducers({
-  login: LoginReducer, // keeps track of user (login; course progress?) info?
+  auth: AuthReducer, // keeps track of user (login; course progress?) info?
   // need one for current lesson
 });
