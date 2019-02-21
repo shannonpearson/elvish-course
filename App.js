@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import reducers from './src/reducers'
+import reducers from './src/reducers';
 import About from './src/Components/About';
 import HomePage from './src/Components/HomePage';
 import WordMatch from './src/Components/WordMatch';
@@ -43,12 +43,12 @@ class App extends Component {
     // this takes a sec to check for authentication so set a case for if loggedIn is null
     firebase.auth().onAuthStateChanged((user) => { // user is undefined if signed out, object if signed in
       this.setState({ loggedIn: !!user });
-    })
+    });
   }
 
   render() {
     const store = createStore(reducers);
-    
+
     return (
       <Provider store={store}>
         <AppNavigator />
